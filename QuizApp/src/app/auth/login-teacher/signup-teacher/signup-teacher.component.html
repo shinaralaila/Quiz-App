@@ -1,0 +1,78 @@
+<!-- <p>signup-student works!</p> -->
+<app-header></app-header>
+<div class="container register">
+    <div class="row">
+             <div class="tab-content" id="myTabContent"> 
+                <div class="tab-pane fade show active text-align form-new" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading" data-toggle="tab">  Teacher SignUp  </h3>
+                    <div class="row register-form">
+                        <div class="col-md-12">
+                            <form  class="sign-up-form" role="form" #f="ngForm" (ngSubmit)= " registerUser()">
+                                <div class="form-group"
+                                [ngClass]="{
+                           'has-danger': fullname.invalid && (fullname.dirty || fullname.touched),
+                           'has-success': fullname.valid && (fullname.dirty || fullname.touched)
+                      }">
+                                <div class="form-group">
+                                    <input type="text" name="fullname"  class="form-control" placeholder="User Name *" value="" pattern="[a-zA-Z]+$"   [(ngModel)]="form.fullname" #fullname="ngModel" required minlength="4"  required>
+                                    <div class="form-control-feedback"
+			                           *ngIf="fullname.errors && (fullname.dirty || fullname.touched)">
+				                       <p *ngIf="fullname.errors.required" class="text-danger">Username is required</p>
+                                       <p *ngIf="fullname.errors.minlength" class="text-danger">Password must be at least 4 characters long</p>
+			                    </div>
+                                </div>
+                                </div>
+                                
+                                 
+                                <div class="form-group">
+                                    <input type="text" name="phonenumber" class="form-control" placeholder="Mobile Number *"  pattern="^(\+91[\-\s]?)?[0]?(91)?[6789]\d{9}$"  [(ngModel)]="form.phonenumber" #phonenumber="ngModel" />
+                                </div>
+                                <div class="form-group"
+	                             [ngClass]="{
+                                             'has-danger': email.invalid && (email.dirty || email.touched),
+                                             'has-success': email.valid && (email.dirty || email.touched)
+                                            }">
+                                <div class="form-group">
+                                    <input type="email" name="email" class="form-control" placeholder=" Email *" value=""   [(ngModel)]="form.email"  #email="ngModel" pattern="[^ @]*@[^ @]*"
+                                     required/>
+                                    
+                                    <div class="form-control-feedback"
+		                                 *ngIf="email.errors && (email.dirty || email.touched)">
+			                         <p *ngIf="email.errors.required" class="text-danger">email is required</p>
+			                         <p *ngIf="email.errors.pattern" class="text-danger">email is not valid</p>
+		                           </div>
+                                </div>
+                                </div>
+                                <div class="form-group"
+	                                [ngClass]="{
+                                  'has-danger': password.invalid && (password.dirty || password.touched),
+                                  'has-success': password.valid && (password.dirty || password.touched)
+                                   }">
+                                <div class="form-group">
+                               <input type="password" required name="password" class="form-control" placeholder="Password *" value=""    [(ngModel)]="form.password" #password="ngModel" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
+                                    minlength="8" required/>
+                                    <div class="form-control-feedback"
+		     *ngIf="password.errors && (password.dirty || password.touched)">
+			<p *ngIf="password.errors.required"class="text-danger">Password is required</p>
+			<p *ngIf="password.errors.minlength" class="text-danger">Password must be at least 8 characters long</p>
+            <p *ngIf="password.errors.pattern" class="text-danger">Password must contain at least the one capital letter ,a small letter or a number </p>
+		                             </div>
+	                         </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="stcmpassword" class="form-control" placeholder="Confirm Password *" value="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  autocomplete="off" spellcheck="false" [(ngModel)]="form.password" #password="ngModel" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" name="LGform1" class="btnContactSubmit"   value="REGISTER" />
+                                    <span><b>Already have an Account?</b></span>
+                                    <a routerLink="../login-teacher" class="btnForgetPwd" id="st_login"  value="Login">Login</a> 
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+       
+    </div>
+</div>

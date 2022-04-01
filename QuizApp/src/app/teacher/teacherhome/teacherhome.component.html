@@ -1,0 +1,56 @@
+
+<app-teachernav></app-teachernav>
+
+<div class="container login_sec" style ="margin-top: 5%;">
+  <div class="row"> 
+    <div class="col-md-7">
+   <!-- <img src="@/assets/images/login_bg.png" class="img-fluid"> -->
+      </div>
+          <div class="col-md-5 login-sec">   
+  <!-- <h2 class="text-center">Login Now</h2> -->
+  <h4>Welcome Teacher</h4>
+  <br>
+  <ul>
+    <li>
+        Add minimum five questions
+    </li>
+    <li>
+        Add maximum ten questions
+    </li>
+    <li>
+        Avoid repeating questions
+    </li>
+  </ul>
+  <br>
+  <form class=" validate-form" #form="ngForm"  (ngSubmit)="AddQuiz()">
+  
+  <div class="form-group">
+    <input type="text" name="title" id="title" class="form-control input-lg" placeholder=" Quiz Title"[(ngModel)]="quizItem.quizname"#quizname ="ngModel" required>
+
+</div>
+<div class="form-group">
+    <input type="text" name="des" id="des" class="form-control input-lg" placeholder=" Quiz description"[(ngModel)]="quizItem.quizdes" #quizdes ="ngModel" required>
+    <br>
+</div>
+
+  
+
+  <div class="container-login100-form-btn">
+  <div class="wrap-login100-form-btn">
+     
+  <button  type="submit" id="submit" value="submit" name="submit" class="btn btn-primary mr-2" style="background-color: rgb(255, 0, 0);">
+  Add Questions
+  </button>
+  </div>
+  </div>
+
+  
+
+  
+  </form>
+
+  
+  </div>  
+            </div>
+    </div>
+    

@@ -31,6 +31,9 @@ private quizurl="http://localhost:3000/quiz"
   getDelete(id:any) {
     return this.http.delete("http://localhost:3000/remove/"+id);
   }
+  getQuestionJson(){
+    return this.http.get<any>("assets/questions.json")
+  }
 }
 function data(data: any, any: any) {
   throw new Error('Function not implemented.');

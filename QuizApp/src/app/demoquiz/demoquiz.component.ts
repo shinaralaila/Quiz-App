@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-demoquiz',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./demoquiz.component.css']
 })
 export class DemoquizComponent implements OnInit {
+  @ViewChild('name') nameKey!:ElementRef;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-}
+  startQuiz(){
+    localStorage.setItem("name",this.nameKey.nativeElement.value);
+    
+  }
+  }
+

@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+
+import { DemoquestionsComponent } from './demoquestions/demoquestions.component';
 import { DemoquizComponent } from './demoquiz/demoquiz.component';
 import { AddquestionsComponent } from './teacher/addquestions/addquestions.component';
 import { QuestionComponent } from './teacher/question/question.component';
@@ -24,6 +26,7 @@ const routes: Routes = [
 
 
 {path:"demoquiz",component:DemoquizComponent },
+{path:"demoquestions",component:DemoquestionsComponent},
 {path:"question",component:QuestionComponent,canActivate: [TeacherGuard]},
 {path:"addquestions",component:AddquestionsComponent,canActivate: [TeacherGuard]},
 {path:"teacherhome",component:TeacherhomeComponent,canActivate: [TeacherGuard]},

@@ -1,0 +1,85 @@
+<head>
+    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<app-header></app-header>
+<div class="container" mt-5>
+    <div class="card">
+        <div class="d-flex justify-content-between p-3">
+            <div class="image">
+             <img src="/assets/img/logo.jpg" width="90" alt="logo">
+            </div>
+            <div class="Quiz-header">
+                <h4 style="font-family:cursive;">Basic html  & css Quiz!</h4>
+                <span style="font-style:italic">Welcome {{name}}</span>
+            </div>
+        </div>
+        <ng-container *ngIf="!isQuizCompleted">
+            <div class="d-flex justify-content-around py-3">
+                <div class="score">
+                    <h5>{{points}} points</h5>
+                </div>
+                <div class="question-remain">
+                    <span style="font-style: italic;">Question {{currentQuestion+1}} of {{questionList.length}}</span>
+                </div>
+                <div class="timer">
+                  <h5> {{counter}} sec 
+                
+                   <i class="bi bi-alarm-fill"></i>
+                   <i class="material-icons">alarm</i>
+                </h5>
+                </div>
+            </div> 
+            <div class="progress" mb-4>
+                <div class="progress-bar bg-danger" role="progressbar"  [ngStyle]="{'width':progress+'%'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>  
+              <div class="question">
+                  <div class="card">
+                   <h3>{{questionList[currentQuestion]?.questionText}}</h3>
+                  </div>
+              </div>
+              <div class="options">
+               
+                <ol *ngFor="let option of questionList[currentQuestion]?.options">
+                    <li (click)="answer(currentQuestion+1,option)"> 
+                    <div appChangeBg [isCorrect]="option.correct" class="card">
+                        {{option.text}}
+                    </div>
+                </li>
+                
+              </ol>
+              </div> 
+              <div class="d-flex justify-content-between">
+                  <button  [disabled]="currentQuestion===0" class="btn" (click)="previousQuestion()"><i class="fa fa-caret-left" style="font-size:48px;color:red"    aria-hidden="true"></i>
+                  </button>
+                  <button  class="btn" (click)="resetQuiz()"><i class="fa fa-refresh" style="font-size:48px;color:red"    aria-hidden="true"></i>
+                  </button>
+                  
+                  <button  [disabled]="currentQuestion===questionList.length"class="btn" (click)="nextQuestion()">
+                    <i class="fa fa-caret-right " style="font-size:48px;color:red"  aria-hidden="true"></i>
+                  </button>
+              </div>
+        </ng-container>
+       <!-- result part  -->
+        <ng-container *ngIf="isQuizCompleted ">
+           <div  class="row.d-flex justify-content-between">
+               <img  class="img-fluid col-sm-4 mx-auto" style="width: 30%;" src="/assets/img/result.jpg" alt="" >
+                <div class="result text-center  col-sm-12 col-md-8 ">
+                 <h3>Congratulations!! <br> You have completed the Demo Quiz.<br>Below is your Result: </h3>
+                 <p>Total Question Attempted:{{questionList.length}}</p>
+                 <p>Total Correct Answered:{{correctAnswer}}</p>
+                 <p>Total Wrong Answered:{{incorrectAnswer}}</p>
+                 <p>Your Total Score:{{points}} points</p>
+                </div>
+           </div>
+           <div class="name col-md-5 my-4">
+            <label for="">To be Continue,You should login</label>
+        </div>
+        <button class="btn btn-primary btn-danger" style="margin-left: 5px;"routerLink="/login-student">Login</button>
+
+        </ng-container>
+        
+    </div>
+</div>

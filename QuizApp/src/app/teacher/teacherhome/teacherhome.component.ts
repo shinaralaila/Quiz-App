@@ -29,7 +29,7 @@ export class TeacherhomeComponent implements OnInit {
       this.questionService.newQuiz(this.quizItem)
       
       console.log("called");
-      this.router.navigate(["addquestions"]);
+      this.router.navigate(["homequiz"]);
     }
   }
 

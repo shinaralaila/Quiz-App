@@ -18,6 +18,7 @@ import { LoginTeacherComponent } from './auth/login-teacher/login-teacher/login-
 import { SignupTeacherComponent } from './auth/login-teacher/signup-teacher/signup-teacher.component';
 import { TeacherGuard } from './teacher.guard';
 import { StudentGuard } from './student.guard';
+import { QuizComponent } from './teacher/quiz/quiz.component';
 
 
 const routes: Routes = [
@@ -33,7 +34,10 @@ const routes: Routes = [
 {path:"login-student",component:LoginStudentComponent},
 {path:"signup-student",component:SignupStudentComponent},
 {path:"login-teacher",component:LoginTeacherComponent},
-{path:"signup-teacher",component:SignupTeacherComponent}
+{path:"signup-teacher",component:SignupTeacherComponent},
+{path:"homequiz",component:QuizComponent,canActivate: [TeacherGuard]},
+
+
 
 
 

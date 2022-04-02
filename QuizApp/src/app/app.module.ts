@@ -1,3 +1,4 @@
+import { QuestionService } from './question.service';
 import { StudentGuard } from './student.guard';
 import { TeacherGuard } from './teacher.guard';
 
@@ -5,9 +6,10 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http'
 import { CommonModule } from '@angular/common';
 import { ChangeBgDirective } from './change-bg.directive';
+import { TokenInterceptorService } from './token-interceptor.service';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +28,8 @@ import { SignupStudentComponent } from './auth/login-student/signup-student/sign
 import { LoginTeacherComponent } from './auth/login-teacher/login-teacher/login-teacher.component';
 import { SignupTeacherComponent } from './auth/login-teacher/signup-teacher/signup-teacher.component';
 import { DemoquestionsComponent } from './demoquestions/demoquestions.component';
+import { AuthService } from './auth.service';
+import { QuizComponent } from './teacher/quiz/quiz.component';
 
 
 
@@ -46,6 +50,7 @@ import { DemoquestionsComponent } from './demoquestions/demoquestions.component'
     SignupTeacherComponent,
     DemoquestionsComponent,
     ChangeBgDirective,
+    QuizComponent,
   ],
 
 
@@ -60,7 +65,11 @@ import { DemoquestionsComponent } from './demoquestions/demoquestions.component'
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [TeacherGuard, StudentGuard],
+  providers: [TeacherGuard, StudentGuard,AuthService,QuestionService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

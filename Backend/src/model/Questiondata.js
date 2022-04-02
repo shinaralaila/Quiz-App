@@ -4,6 +4,7 @@ mongoose.connect('mongodb+srv://userone:userone@cluster0.elmop.mongodb.net/Quiz?
 
 const Schema=mongoose.Schema;
 var NewQuestionSchema = new Schema({
+    quizid:String,
     question:String,
     option1:String,
     option2:String,

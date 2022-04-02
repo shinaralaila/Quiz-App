@@ -31,7 +31,7 @@ export class LoginTeacherComponent implements OnInit {
         //console.log(localStorage.getItem('token'))
         window.localStorage.setItem('teacher', 'yes');
         //console.log(localStorage.getItem('teacher'))
-        this.router.navigate(['teacherhome']);
+        this.router.navigate(['homequiz']);
       }
       else {
 

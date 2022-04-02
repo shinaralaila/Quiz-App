@@ -15,7 +15,7 @@ export class AddquestionsComponent implements OnInit {
   option2: any;
   option3: any;
   option4: any;
-
+quizid:any
   constructor(private questionService:QuestionService,private router:Router) { }
   obj:any;
   questionItem :any= {
@@ -29,11 +29,12 @@ export class AddquestionsComponent implements OnInit {
     
 
   ngOnInit(): void {
+    this.quizid=this.questionService.getQuizId()
   }
 AddQuestion(){
-  
-  this.questionService.newQuestion(this.questionItem);
+  this.obj = {quizid:this.quizid,questionItem:this.questionItem}
+  this.questionService.newQuestion(this.obj);
   console.log("called");
-  this.router.navigate(["question"]);
+  this.router.navigate(["homequiz"]);
 }
 }

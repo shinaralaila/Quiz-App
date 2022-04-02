@@ -23,7 +23,9 @@ function verifyToken(req, res, next) {
   if (token === 'null') {
     return res.status(401).send('Unauthorized request')
   }
-  let payload = jwt.verify(token, 'secretKey')
+  // console.log('token');console.log(token);
+  let payload = jwt.verify(token, 'secretkey')
+  // console.log('payload');console.log(payload);
   if (!payload) {
     return res.status(401).send('Unauthorized request')
   }
@@ -33,19 +35,23 @@ function verifyToken(req, res, next) {
 
 
 app.post('/add', verifyToken, (req, res) => {
+  
+  console.log("Before");
   console.log(req.body);
 
   var question = {
-    question: req.body.question.question,
-    option1: req.body.question.option1,
-    option2: req.body.question.option2,
-    option3: req.body.question.option3,
-    option4: req.body.question.option4,
-    answer: req.body.question.answer
+    quizid: req.body.question.quizid,
+    question: req.body.question.questionItem.question,
+    option1: req.body.question.questionItem.option1,
+    option2: req.body.question.questionItem.option2,
+    option3: req.body.question.questionItem.option3,
+    option4: req.body.question.questionItem.option4,
+    answer: req.body.question.questionItem.answer
 
   }
-
+console.log(question);
   var question = new Questiondata(question);
+  console.log(question);
   question.save();
 })
 app.post('/quiz', verifyToken, (req, res) => {
@@ -61,15 +67,33 @@ app.post('/quiz', verifyToken, (req, res) => {
   // console.log (req.body.quiz)
 
 })
+app.get('/homequiz',verifyToken,(req,res)=>{
+  quizdata.find()
+  .then(function(quiz){
+    res.send(quiz);
+  })
+})
+app.delete('/removequiz/:id',verifyToken, (req, res) => {
+  id = req.params.id;
+  quizdata.findByIdAndDelete({ "_id": id })
+    .then(() => {
+      console.log('quiz delete success')
+      res.send();
+    })
+})
 
-app.get('/question', verifyToken, (req, res) => {
-  Questiondata.find()
+app.get('/question/:quizid', verifyToken, (req, res) => {
+  // console.log("req"); console.log(req);
+  quizid = req.params.quizid;
+  console.log("this.quizid"); console.log(quizid);
+  console.log("Questiondata");console.log(Questiondata);
+  Questiondata.find({ "quizid": quizid })
     .then(function (question) {
       res.send(question);
     });
 })
 
-app.delete('/remove/:id', (req, res) => {
+app.delete('/remove/:id',verifyToken, (req, res) => {
   id = req.params.id;
   Questiondata.findByIdAndDelete({ "_id": id })
     .then(() => {

@@ -17,20 +17,31 @@ user:any={
   ngOnInit(): void {
   }
   loginStUser () {
+
     
-    this.auth.loginUser(this.user)
-    .subscribe(
-      res => {
-        localStorage.setItem('token', res.token)
-        this.router.navigate(['/home'])
-      },
-      err => {
-        console.log(err);
-        this.router.navigate(['/login-student'])
+    this.auth.loginUser(this.user).subscribe((data: any) => {
+     
+      console.log("data "+data['role'])
+       
+      if (data['role'] == 'teacher') {
+        console.log("student ");
+        console.log(data.token);
+        window.localStorage.setItem('token', data.token);
+        //console.log(localStorage.getItem('token'))
+        window.localStorage.setItem('student', 'yes');
+        //console.log(localStorage.getItem('teacher'))
+        this.router.navigate(['studenthome']);
       }
-    ) 
+      else {
+
+        this.router.navigate(['login-student'])
+      }
+    })
+  
+    function data(data: any): string {
+      throw new Error('Function not implemented.');
+    }
   }
-
-
-
 }
+
+

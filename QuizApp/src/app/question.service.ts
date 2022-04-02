@@ -9,10 +9,13 @@ import { Observable } from 'rxjs';
 export class QuestionService {
 private addurl="http://localhost:3000/add"
 
-private questionurl="http://localhost:3000/question"
+private questionurl="http://localhost:3000/question/"
 
 private quizurl="http://localhost:3000/quiz"
+
+private homequiz="http://localhost:3000/homequiz"
   delete: any;
+  private quizid: any;
 
   constructor(private http:HttpClient) { }
   newQuestion(item:any){
@@ -25,8 +28,8 @@ private quizurl="http://localhost:3000/quiz"
   
     )} 
 
-  getQuestion(){
-    return this.http.get(this.questionurl)
+  getQuestion(id:any){
+    return this.http.get(this.questionurl+id)
   }
   getDelete(id:any) {
     return this.http.delete("http://localhost:3000/remove/"+id);
@@ -34,6 +37,24 @@ private quizurl="http://localhost:3000/quiz"
   getQuestionJson(){
     return this.http.get<any>("assets/questions.json")
   }
+  setQuizId(id:any) {
+    this.quizid = id;
+  }
+  getQuizId() {
+    return this.quizid;
+  }
+
+  deletequiz(id:any) {
+    return this.http.delete("http://localhost:3000/removequiz/" + id);
+  }
+  gethomequiz() {
+    return this.http.get(this.homequiz);
+  }
+  setDelete(data:any) {
+    this.delete = data;
+  }
+
+
 }
 function data(data: any, any: any) {
   throw new Error('Function not implemented.');

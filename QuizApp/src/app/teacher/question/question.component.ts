@@ -9,7 +9,7 @@ import { QuestionService } from 'src/app/question.service';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-
+quizid:any
   question:any=[ {
     question :'',
     option1:'',
@@ -22,8 +22,12 @@ export class QuestionComponent implements OnInit {
   constructor(private questionservice:QuestionService) { }
 
   ngOnInit(): void {
-
-    this.questionservice.getQuestion().subscribe((data: any)=>{
+   // this.del = this.questionservice.getDelete()
+    this.quizid = this.questionservice.getQuizId();
+    // console.log(this.del);
+    
+    console.log("QuizId in QuestionComp");console.log(this.quizid);
+    this.questionservice.getQuestion(this.quizid).subscribe((data: any)=>{
       this.question=JSON.parse(JSON.stringify(data))
 
     })

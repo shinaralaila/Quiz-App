@@ -7,54 +7,70 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class QuestionService {
-private addurl="http://localhost:3000/add"
+  private addurl = "http://localhost:3000/add"
 
-private questionurl="http://localhost:3000/question/"
+  private questionurl = "http://localhost:3000/question/"
 
-private quizurl="http://localhost:3000/quiz"
+  private quizurl = "http://localhost:3000/quiz"
 
-private homequiz="http://localhost:3000/homequiz"
+  private userscoreurl = "http://localhost:3000/userscore"
+
+  private homequiz = "http://localhost:3000/homequiz"
   delete: any;
   private quizid: any;
 
-  constructor(private http:HttpClient) { }
-  newQuestion(item:any){
-    return this.http.post(this.addurl,{"question":item})
-    .subscribe((data: any)=>{console.log(data)})
+  constructor(private http: HttpClient) { }
+  newQuestion(item: any) {
+    return this.http.post(this.addurl, { "question": item })
+      .subscribe((data: any) => { console.log(data) })
   }
-  newQuiz(item:any){
-    return this.http.post(this.quizurl,{"quiz":item})
-    .subscribe((data: any)=>{console.log(data)}
-  
-    )} 
+  newQuiz(item: any) {
+    return this.http.post(this.quizurl, { "quiz": item })
+      .subscribe((data: any) => { console.log(data) }
 
-  getQuestion(id:any){
-    return this.http.get(this.questionurl+id)
+      )
   }
-  getDelete(id:any) {
-    return this.http.delete("http://localhost:3000/remove/"+id);
+
+  getQuestion(id: any) {
+    return this.http.get(this.questionurl + id)
   }
-  getQuestionJson(){
+  getDelete(id: any) {
+    return this.http.delete("http://localhost:3000/remove/" + id);
+  }
+  getQuestionJson() {
     return this.http.get<any>("assets/questions.json")
   }
-  setQuizId(id:any) {
+  setQuizId(id: any) {
     this.quizid = id;
   }
   getQuizId() {
     return this.quizid;
   }
 
-  deletequiz(id:any) {
+  postuserscoredata(item: any) {
+    console.log("postuserscore:"); console.log(item);
+    return this.http.post(this.userscoreurl, { "userscore": item })
+      .subscribe((data: any) => { console.log(data) }
+      )
+  }
+
+  deletequiz(id: any) {
     return this.http.delete("http://localhost:3000/removequiz/" + id);
   }
   gethomequiz() {
     return this.http.get(this.homequiz);
   }
-  setDelete(data:any) {
+  setDelete(data: any) {
     this.delete = data;
   }
 
-
+   edit(question:any)
+   {
+     console.log('client update')
+     return this.http.put("http://localhost:3000/update/:id",question)
+     
+   }
+    
 }
 function data(data: any, any: any) {
   throw new Error('Function not implemented.');

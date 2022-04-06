@@ -1,0 +1,91 @@
+<head>
+    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<app-studentnav></app-studentnav>
+
+<div class="container" mt-5>
+
+    <div class="card" style="margin-bottom: 15%; margin-top: 10%">
+        <div class="d-flex justify-content-between p-3">
+            <div class="image">
+                <img src="/assets/img/logo.jpg" width="90" alt="logo">
+            </div>
+            <div class="Quiz-header">
+                <h4 style="font-family:cursive;">Quiz</h4>
+                <span style="font-style:italic">Welcome</span>
+            </div>
+            <form [formGroup]="form">
+                <div *ngIf="flagLast">
+                    You have scored {{score}}/{{questions}}
+                </div>
+            </form>
+        </div>
+
+        <ng-container *ngIf="!flagLast">
+            <div class="d-flex justify-content-around py-3">
+                <div class="question-remain">
+                    <span style="font-style: italic;">Question: {{currentQuestion+1}} of {{question.length}}</span>
+                </div>
+            </div>
+            <!-- <div *ngFor='let question of question;index as i'> -->
+
+            <div class="card">
+                <!-- <h3>{{question.question}}</h3> -->
+                <h3>{{question[currentQuestion]?.question}}</h3>
+            </div>
+
+            <form [formGroup]="form" (ngSubmit)="submitResult()">
+
+                <div class="form-group">
+                    <label for="result">Options:</label>
+                    <div>
+                        <input id="1" type="radio" value="1" name="result" formControlName="result"
+                            [defaultChecked]="false" (change)="answer(oneQuestion.question,'1')">
+                        <label for="1">{{question[currentQuestion]?.option1}}</label>
+                        <br>
+                        <input id="2" type="radio" value="2" name="result" formControlName="result"
+                            [defaultChecked]="false" (change)="answer(oneQuestion.question,'2')">
+                        <label for="2">{{question[currentQuestion]?.option2}}</label>
+                        <br>
+                        <input id="3" type="radio" value="3" name="result" formControlName="result"
+                            [defaultChecked]="false" (change)="answer(oneQuestion.question,'3')">
+                        <label for="3">{{question[currentQuestion]?.option3}}</label>
+                        <br>
+                        <input id="4" type="radio" value="4" name="result" formControlName="result"
+                            [defaultChecked]="false" (change)="answer(oneQuestion.question,'4')">
+                        <label for="4">{{question[currentQuestion]?.option4}}</label>
+                        <br>
+
+                    </div>
+                </div>
+            </form>
+
+            <div *ngIf="!finalResult">
+                <div class="d-flex justify-content-between">
+                    <button [disabled]="currentQuestion===0" class="btn" (click)="previousQuestion()"><i
+                            class="fa fa-caret-left" style="font-size:48px;color:red" aria-hidden="true"></i>
+                    </button>
+                    <!-- <button class="btn" (click)="resetQuiz()"><i class="fa fa-refresh" style="font-size:48px;color:red"
+                            aria-hidden="true"></i>
+                    </button> -->
+
+                    <button [disabled]="flagLast" class="btn" (click)="nextQuestion()">
+                        <i class="fa fa-caret-right " style="font-size:48px;color:red" aria-hidden="true"></i>
+                    </button>
+                    <!-- <button [disabled]="!flagLast" class="btn" (click)="submitResult()">Submit</button> -->
+                </div>
+            </div>
+        </ng-container>
+        <!-- <ng-container *ngIf="flagLast">
+            <form [formGroup]="form">
+                <div>
+                    You have scored {{score}}/{{questions}}
+                </div>
+               
+                </form>
+            </ng-container> -->
+    </div>
+</div>

@@ -1,10 +1,10 @@
-.carousel-item h1 
+/* .carousel-item h1 
 {
 color:#fff;
 font-size: 20px;
     margin: 75px auto;
     text-align: center;
-}
+} */
 .login-block 
 {
   
@@ -38,28 +38,28 @@ font-size: 20px;
 
 
 
-.carousel-fade .carousel-item {
+/* .carousel-fade .carousel-item {
   opacity: 0;
   transition-duration: .6s;
   transition-property: opacity;
 }
-
-.carousel-indicators {
+ */
+/* .carousel-indicators {
 
   bottom: -41px;
 }
-
+ */
 .carousel-indicators .active {
   background-color: #fff;
 }
 
-.carousel-fade .carousel-item.active,
+/* .carousel-fade .carousel-item.active,
 .carousel-fade .carousel-item-next.carousel-item-left,
 .carousel-fade .carousel-item-prev.carousel-item-right {
   opacity: 1;
-}
+} */
 
-.carousel-fade .active.carousel-item-left,
+/* .carousel-fade .active.carousel-item-left,
 .carousel-fade .active.carousel-item-right {
   opacity: 0;
 }
@@ -71,18 +71,20 @@ font-size: 20px;
 .carousel-fade .active.carousel-item-prev {
   transform: translateX(0);
   transform: translate3d(0, 0, 0);
-}
+} */
 
 .container {
-
+margin-top: 17%;
 -webkit-box-shadow: 0 0.1875rem 1.5rem rgba(0, 0, 0, 0.2);
 box-shadow: 0 0.1875rem 1.5rem rgba(0, 0, 0, 0.5);
 border-radius: 0.375rem;
-margin-bottom: 5%;
-
+margin-bottom: 10%;
+opacity: 0.6
 }
-
-.carousel-inner {
+.form-control{
+  border: 1px solid black;
+}
+/* .carousel-inner {
   border-radius: 0 10px 10px 0;
 }
 
@@ -90,7 +92,7 @@ margin-bottom: 5%;
   text-align: left;
   left: 5%;
 }
-
+ */
 .login-sec {
   padding: 50px 30px;
   position: relative;

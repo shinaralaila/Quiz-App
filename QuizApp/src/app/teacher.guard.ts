@@ -23,23 +23,23 @@ export class TeacherGuard implements CanActivate {
     {
       if (localStorage.getItem('teacher') === "yes")
       {
-        // if (localStorage.getItem('admin') === "no")
-        // {
-        //   if (localStorage.getItem('student') === "no")
-        //   {
+         if (localStorage.getItem('admin') === "no")
+         {
+           if (localStorage.getItem('student') === "no")
+         {
             return true;
-          // }
-          // else
-          // {
-          //   this.trGuard();
-          //   return false;
-          // }
-        // }
-        // else
-        // {
-        //   this.trGuard();
-        //   return false;
-        // }
+          }
+          else
+          {
+            this.trGuard();
+            return false;
+          }
+        }
+         else
+         {
+           this.trGuard();
+         return false;
+         }
 
       }
       else

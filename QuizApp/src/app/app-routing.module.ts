@@ -1,4 +1,6 @@
-
+import { EditComponent } from './teacher/edit/edit.component';
+import { Qlevel1Component } from './student/qlevel1/qlevel1.component';
+import { AdminqnsComponent } from './admin/adminqns/adminqns.component';
 
 
 
@@ -19,6 +21,14 @@ import { SignupTeacherComponent } from './auth/login-teacher/signup-teacher/sign
 import { TeacherGuard } from './teacher.guard';
 import { StudentGuard } from './student.guard';
 import { QuizComponent } from './teacher/quiz/quiz.component';
+import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
+import { ViewteacherComponent } from './admin/viewteacher/viewteacher.component';
+import { ViewstudentComponent } from './admin/viewstudent/viewstudent.component';
+import { StudenthomeComponent } from './student/studenthome/studenthome.component';
+import { ResultComponent } from './student/result/result.component';
+
+
+
 
 
 const routes: Routes = [
@@ -36,8 +46,14 @@ const routes: Routes = [
 {path:"login-teacher",component:LoginTeacherComponent},
 {path:"signup-teacher",component:SignupTeacherComponent},
 {path:"homequiz",component:QuizComponent,canActivate: [TeacherGuard]},
-
-
+{path:"adminhome",component:AdminhomeComponent},
+{path:"studenthome",component:StudenthomeComponent},
+{path:"viewstudent",component:ViewstudentComponent},
+{path:"viewteacher",component:ViewteacherComponent},
+{path:"qlevel1",component:Qlevel1Component},
+{path:"adminqns",component:AdminqnsComponent},
+{path:"result",component:ResultComponent},
+{path:"edit",component:EditComponent}
 
 
 

@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Questiondata = require('./src/model/Questiondata');
 const quizdata = require('./src/model/quizdata');
+const userscoredata = require('./src/model/userscoredata');
 const userdata = require('./src/model/userdata')
 var bodyParser = require('body-parser')
 var cors = require('cors');
@@ -30,14 +31,14 @@ function verifyToken(req, res, next) {
     return res.status(401).send('Unauthorized request')
   }
   req.userId = payload.subject
+  req.email = payload.email
   next()
 }
 
-
 app.post('/add', verifyToken, (req, res) => {
-  
-  console.log("Before");
-  console.log(req.body);
+
+  // console.log("Before");
+  // console.log(req.body);
 
   var question = {
     quizid: req.body.question.quizid,
@@ -49,31 +50,41 @@ app.post('/add', verifyToken, (req, res) => {
     answer: req.body.question.questionItem.answer
 
   }
-console.log(question);
+  // console.log(question);
   var question = new Questiondata(question);
-  console.log(question);
+  // console.log(question);
   question.save();
 })
+
+
 app.post('/quiz', verifyToken, (req, res) => {
-  console.log(req.body);
+  // console.log("userdata.email"); console.log(userdata.email);
+  // // console.log(req.body);
+  //console.log("Req email"); console.log(req.email);
 
   var quiz = {
     quizname: req.body.quiz.quizname,
-    quizdes: req.body.quiz.quizdes
+    quizdes: req.body.quiz.quizdes,
+    email: req.email
+
   }
+  //console.log(quiz)
   var quiz = new quizdata(quiz);
   console.log(quiz)
   quiz.save();
   // console.log (req.body.quiz)
 
 })
-app.get('/homequiz',verifyToken,(req,res)=>{
+
+app.get('/homequiz', verifyToken, (req, res) => {
   quizdata.find()
-  .then(function(quiz){
-    res.send(quiz);
-  })
+    .then(function (quiz) {
+      res.send(quiz);
+      // console.log(quiz)
+    })
 })
-app.delete('/removequiz/:id',verifyToken, (req, res) => {
+
+app.delete('/removequiz/:id', verifyToken, (req, res) => {
   id = req.params.id;
   quizdata.findByIdAndDelete({ "_id": id })
     .then(() => {
@@ -86,14 +97,14 @@ app.get('/question/:quizid', verifyToken, (req, res) => {
   // console.log("req"); console.log(req);
   quizid = req.params.quizid;
   console.log("this.quizid"); console.log(quizid);
-  console.log("Questiondata");console.log(Questiondata);
+  console.log("Questiondata"); console.log(Questiondata);
   Questiondata.find({ "quizid": quizid })
     .then(function (question) {
       res.send(question);
     });
 })
 
-app.delete('/remove/:id',verifyToken, (req, res) => {
+app.delete('/remove/:id', verifyToken, (req, res) => {
   id = req.params.id;
   Questiondata.findByIdAndDelete({ "_id": id })
     .then(() => {
@@ -157,8 +168,6 @@ app.post('/registerSt', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-  
-
   // console.log(req.body.email);
   userdata.findOne({ email: req.body.email }, (err, user) => {
     if (err) {
@@ -173,13 +182,13 @@ app.post('/login', (req, res) => {
       else {
         // console.log(req.body.password)
         // console.log(user.password)
-        
+
         bcrypt.compare(req.body.password, user.password).then(match => {
           if (match) {
             console.log("login success");
             let payload = { subject: user._id, email: user.email }
             let token = jwt.sign(payload, 'secretkey')
-            res.status(200).json({ token: token, role: user.role, blocked: user.blocked })
+            res.status(200).json({ token: token, role: user.role, blocked: user.blocked, email: user.email })
           }
           else {
             console.log("Incorrect password");
@@ -193,6 +202,66 @@ app.post('/login', (req, res) => {
     }
   })
 })
+
+app.get('/seeteacher', (req, res) => {
+  userdata.find({ role: "teacher" }, (err, usr) => {
+    if (err) {
+      console.log(error);
+      res.json({ msg: "some error!" });
+    }
+    else {
+      res.json({ user: usr });
+    }
+  })
+})
+
+app.post('/userscore', verifyToken, (req, res) => {
+  console.log("Save Score: req.body"); console.log(req.body);
+  var timestamp = new Date();
+   
+  var userscore = {
+    quizid: req.body.userscore.quizid,
+    email: req.email,
+    score: req.body.userscore.score,
+    datestamp: timestamp
+
+  }
+  console.log("userscore:");console.log(userscore);
+
+  var userscore = new userscoredata(userscore);
+  console.log("userscore:"); console.log(userscore);
+  userscore.save();
+})
+
+app.put('/update/', (req, res) => {
+  console.log(req.body)
+  id = req.body._id,
+    quizid = req.body.quizid,
+    question = req.body.question,
+    option1 = req.body.option1,
+    option2 = req.body.option2,
+    option3 = req.body.option3,
+    option4 = req.body.option4,
+    answer = req.body.answer,
+
+    Questiondata.findByIdAndUpdate({ "_id": id },
+      {
+        $set: {
+          "quizid": quizid,
+          "question": question,
+          "option1": option1,
+          "option2": option2,
+          "option3": option3,
+          "option4": option4,
+          "answer":answer
+        }
+      })
+      .then(function () {
+        res.send();
+      })
+})
+
+
 
 app.listen(3000, () => {
   console.log("port 3000")

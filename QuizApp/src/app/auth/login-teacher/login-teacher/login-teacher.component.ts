@@ -22,14 +22,30 @@ export class LoginTeacherComponent implements OnInit {
 
     this.auth.loginUser(this.user).subscribe((data: any) => {
      
-      console.log("data "+data['role'])
+      console.log("data "+data['role']);
+      if (data['role'] == "admin") {
+        // console.log("admin");
+        localStorage.setItem('token', data.token );
+
+        localStorage.setItem('admin', 'yes');
+        localStorage.setItem('student', 'no');
+        localStorage.setItem('teacher', 'no');
+        // this.router.navigate(['/admin']);
+        // this.router.navigate(['/']);
+        this.router.navigate(['adminhome']);
+      }
        
-      if (data['role'] == 'teacher') {
-        console.log("Teacher ");
-        console.log(data.token);
+   else   if (data['role'] == 'teacher') {
+        //console.log("Teacher ");
+        //console.log(data.token);
         window.localStorage.setItem('token', data.token);
+        window.localStorage.setItem('email', data['email']);
+        //console.log(localStorage.getItem('email'))
         //console.log(localStorage.getItem('token'))
         window.localStorage.setItem('teacher', 'yes');
+        window.localStorage.setItem('student','no');
+        window.localStorage.setItem('admin','no');
+
         //console.log(localStorage.getItem('teacher'))
         this.router.navigate(['homequiz']);
       }

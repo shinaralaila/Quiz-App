@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+
+}
+.container {
+    background-color:#eff1e7;
+    color: #0a192f;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Montserrat', sans-serif;
+    max-width: 800px;
+    margin-bottom: 5px;
+
+}
+
+.question {
+    width: 100%;
+    color: #0a192f;
+
+}
+
+
+
+.card{
+    border:1px solid green ;
+    max-width:800px;
+    margin: 0 auto;
+    padding: 10px;
+}
+li{
+    list-style-type: none;
+    cursor: pointer;
+    margin: 10px;
+}
+li.card:hover{
+    border: 1px solid green;
+}
+ol{
+    padding: 0;
+}

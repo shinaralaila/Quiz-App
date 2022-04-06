@@ -1,6 +1,8 @@
+import { AdminGuard } from './admin.guard';
 import { QuestionService } from './question.service';
 import { StudentGuard } from './student.guard';
 import { TeacherGuard } from './teacher.guard';
+
 
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,6 +12,8 @@ import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http'
 import { CommonModule } from '@angular/common';
 import { ChangeBgDirective } from './change-bg.directive';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +34,18 @@ import { SignupTeacherComponent } from './auth/login-teacher/signup-teacher/sign
 import { DemoquestionsComponent } from './demoquestions/demoquestions.component';
 import { AuthService } from './auth.service';
 import { QuizComponent } from './teacher/quiz/quiz.component';
+import { AdminnavComponent } from './admin/adminnav/adminnav.component';
+import { AdminhomeComponent } from './admin/adminhome/adminhome.component';
+import { ViewteacherComponent } from './admin/viewteacher/viewteacher.component';
+import { ViewstudentComponent } from './admin/viewstudent/viewstudent.component';
+import { StudenthomeComponent } from './student/studenthome/studenthome.component';
+import { Qlevel1Component } from './student/qlevel1/qlevel1.component';
+
+
+import { ResultComponent } from './student/result/result.component';
+import { StudentnavComponent } from './student/studentnav/studentnav.component';
+import { AdminqnsComponent } from './admin/adminqns/adminqns.component';
+import { EditComponent } from './teacher/edit/edit.component';
 
 
 
@@ -51,6 +67,18 @@ import { QuizComponent } from './teacher/quiz/quiz.component';
     DemoquestionsComponent,
     ChangeBgDirective,
     QuizComponent,
+    AdminnavComponent,
+    AdminhomeComponent,
+    ViewteacherComponent,
+    ViewstudentComponent,
+    StudenthomeComponent,
+    Qlevel1Component,
+  
+    ResultComponent,
+    StudentnavComponent,
+    AdminqnsComponent,
+    EditComponent
+
   ],
 
 
@@ -61,11 +89,12 @@ import { QuizComponent } from './teacher/quiz/quiz.component';
     FormsModule,
     HttpClientModule,
     CommonModule,
+    FontAwesomeModule
     
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [TeacherGuard, StudentGuard,AuthService,QuestionService, {
+  providers: [TeacherGuard, StudentGuard,AuthService,QuestionService, AdminGuard,{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true

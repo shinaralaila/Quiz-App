@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { QuestionService } from 'src/app/question.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @Component({
   selector: 'app-quiz',
@@ -9,9 +11,22 @@ import { QuestionService } from 'src/app/question.service';
   styleUrls: ['./quiz.component.css']
 })
 export class QuizComponent implements OnInit {
+  
    quiz: any=[{
      quizname:"" ,
     quizdes:""}];
+
+
+    quizid:any
+    question:any=[ {
+      question :'',
+      option1:'',
+      option2:'',
+      option3:'',
+      option4:'',
+      answer:''
+    }];
+    // selectedQuestion= new this.question();
   constructor(private questionservice:QuestionService, private router:Router) { }
 
   ngOnInit(): void {
@@ -27,12 +42,13 @@ export class QuizComponent implements OnInit {
       }
       add(quiz:any) {
         this.questionservice.setQuizId(quiz._id);
+        console.log(localStorage.getItem('email'));
         this.router.navigate(['addquestions']);
       }
 
       viewQuestion(q:any) {
         this.questionservice.setQuizId(q._id);
-        this.questionservice.setDelete(q.upload)
+       // this.questionservice.setDelete(q.upload)
         this.router.navigate(['question']);
       }
       delete(quiz:any) {
@@ -48,5 +64,15 @@ export class QuizComponent implements OnInit {
     
           )
       }
+      edit(q)
+      {  this.questionservice.setQuizId(q._id);  
+        this.questionservice.edit(this.question);   
+      console.log('edit')
+        this.router.navigate(['question']);
+      }
+    /*  editqns(question) {
+        this.selectedQuestion = question;
+      } */
+    
     
 }

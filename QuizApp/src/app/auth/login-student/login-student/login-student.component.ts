@@ -23,7 +23,7 @@ user:any={
      
       console.log("data "+data['role'])
        
-      if (data['role'] == 'teacher') {
+      if (data['role'] == 'student') {
         console.log("student ");
         console.log(data.token);
         window.localStorage.setItem('token', data.token);

@@ -5,6 +5,7 @@ const Schema=mongoose.Schema;
 var QuizSchema = new Schema({
     quizname:String,
     quizdes:String,
+    email:String
     
 })
 

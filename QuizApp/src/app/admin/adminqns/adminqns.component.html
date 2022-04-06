@@ -1,0 +1,41 @@
+
+<app-adminnav></app-adminnav>
+<div *ngFor='let question of question ;index as i'>
+<div class="container"  >
+   
+    <div class="Question">{{i+1}} -- {{question.question}}
+    
+    </div>
+    
+    <ol>
+    <li class="option1">
+     1)  {{question.option1}}
+    </li>
+
+    <li class="option2">
+     2)  {{question.option2}}
+    </li>
+
+    <li class="option3">
+    3)  {{question.option3}}
+    </li>
+
+    <li class="option4">
+    4)  {{question.option4}}
+    </li>
+
+    <div>
+        <label class="options"><span>Answer :- {{question.answer}}</span></label>
+        </div>
+</ol>
+
+<div class="d-flex align-items-center py-2" style="position: relative;margin-top: 20px;">
+    <button (click)="delete(question)"  class="btn btn-danger">delete</button>
+     
+  </div>
+</div>
+</div>
+
+
+
+

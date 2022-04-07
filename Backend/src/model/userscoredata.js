@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://userone:userone@cluster0.elmop.mongodb.net/Quiz?retryWrites=true&w=majority', { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, () => { console.log("connected to question") });
+mongoose.connect('mongodb+srv://userone:userone@cluster0.elmop.mongodb.net/Quiz?retryWrites=true&w=majority', { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, () => { console.log("connected to score") });
 
 const Schema = mongoose.Schema;
 var UserScoreSchema = new Schema({

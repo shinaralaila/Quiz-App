@@ -121,7 +121,14 @@ app.delete('/remove/:id', verifyToken, (req, res) => {
       res.send();
     })
 })
-
+app.delete('/removescore/:id', verifyToken, (req, res) => {
+  id = req.params.id;
+  userscoredata.findByIdAndDelete({ "_id": id })
+    .then(() => {
+      console.log('success')
+      res.send();
+    })
+})
 app.post('/registerTr', (req, res) => {
   console.log(req.body);
 

@@ -63,7 +63,9 @@ export class QuestionService {
       .subscribe((data: any) => { console.log(data) }
       )
   }
-
+  deletescore(id: any) {
+    return this.http.delete("http://localhost:3000/removescore/" + id);
+  }
   deletequiz(id: any) {
     return this.http.delete("http://localhost:3000/removequiz/" + id);
   }

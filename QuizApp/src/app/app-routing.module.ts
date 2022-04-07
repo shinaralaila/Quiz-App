@@ -1,13 +1,6 @@
-import { EditComponent } from './teacher/edit/edit.component';
-import { Qlevel1Component } from './student/qlevel1/qlevel1.component';
-import { AdminqnsComponent } from './admin/adminqns/adminqns.component';
-
-
-
 import { HomeComponent } from './home/home.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 
 import { DemoquestionsComponent } from './demoquestions/demoquestions.component';
 import { DemoquizComponent } from './demoquiz/demoquiz.component';
@@ -27,8 +20,9 @@ import { ViewstudentComponent } from './admin/viewstudent/viewstudent.component'
 import { StudenthomeComponent } from './student/studenthome/studenthome.component';
 import { ResultComponent } from './student/result/result.component';
 
-
-
+import { EditComponent } from './teacher/edit/edit.component';
+import { Qlevel1Component } from './student/qlevel1/qlevel1.component';
+import { AdminqnsComponent } from './admin/adminqns/adminqns.component';
 
 
 const routes: Routes = [
@@ -53,7 +47,7 @@ const routes: Routes = [
 {path:"qlevel1",component:Qlevel1Component},
 {path:"adminqns",component:AdminqnsComponent},
 {path:"result",component:ResultComponent},
-{path:"edit",component:EditComponent}
+{path:"editqn",component:EditComponent}
 
 
 

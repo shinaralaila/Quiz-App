@@ -191,7 +191,7 @@ export class Qlevel1Component implements OnInit {
         if (this.ansOfOneQuestion[i].qid == this.ansKey[j].qid) {
           if (this.ansOfOneQuestion[i].ans == this.ansKey[j].ans) {
             this.score++;
-            // console.log("Scored"); console.log(this.score);
+             console.log("Scored"); console.log(this.score);
           }
         }
       }

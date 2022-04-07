@@ -13,7 +13,7 @@
 
       <div class="row">
 
-        <div class="card-body mb">
+        <div class="card-body mb" style="width: 100%;">
 
           <div *ngFor="let quiz of quiz;index as i">
             <div class="col-md-4">
@@ -23,7 +23,7 @@
 
                 <h5 class="card-title">{{quiz.quizname}}</h5>
                 <p class="card-text">{{quiz.quizdes}}</p>
-                <button type="button" class="btn btn-primary mb" (click)="playquiz(quiz)">Play Quiz</button>
+                <button type="button" class="btn btn-danger mb" (click)="playquiz(quiz)">Play Quiz</button>
               </div>
             </div>
           </div>

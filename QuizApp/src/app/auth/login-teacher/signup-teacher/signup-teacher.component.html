@@ -4,7 +4,7 @@
     <div class="row">
              <div class="tab-content" id="myTabContent"> 
                 <div class="tab-pane fade show active text-align form-new" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3 class="register-heading" data-toggle="tab">  Teacher SignUp  </h3>
+                    <h3 class="register-heading" data-toggle="tab"  style="font-weight: bold;color: black; ">  Teacher SignUp  </h3>
                     <div class="row register-form">
                         <div class="col-md-12">
                             <form  class="sign-up-form" role="form" #f="ngForm" (ngSubmit)= " registerUser()">
@@ -17,8 +17,8 @@
                                     <input type="text" name="fullname"  class="form-control" placeholder="User Name *" value="" pattern="[a-zA-Z]+$"   [(ngModel)]="form.fullname" #fullname="ngModel" required minlength="4"  required>
                                     <div class="form-control-feedback"
 			                           *ngIf="fullname.errors && (fullname.dirty || fullname.touched)">
-				                       <p *ngIf="fullname.errors.required" class="text-danger">Username is required</p>
-                                       <p *ngIf="fullname.errors.minlength" class="text-danger">Password must be at least 4 characters long</p>
+				                       <p style="font-weight: bold;color: red; " *ngIf="fullname.errors.required" class="text-danger">Username is required</p>
+                                       <p style="font-weight: bold;color: red; " *ngIf="fullname.errors.minlength" class="text-danger">Password must be at least 4 characters long</p>
 			                    </div>
                                 </div>
                                 </div>
@@ -38,8 +38,8 @@
                                     
                                     <div class="form-control-feedback"
 		                                 *ngIf="email.errors && (email.dirty || email.touched)">
-			                         <p *ngIf="email.errors.required" class="text-danger">email is required</p>
-			                         <p *ngIf="email.errors.pattern" class="text-danger">email is not valid</p>
+			                         <p  style="font-weight: bold;color: red; " *ngIf="email.errors.required" class="text-danger">email is required</p>
+			                         <p  style="font-weight: bold;color: red; "*ngIf="email.errors.pattern" class="text-danger">email is not valid</p>
 		                           </div>
                                 </div>
                                 </div>
@@ -53,9 +53,9 @@
                                     minlength="8" required/>
                                     <div class="form-control-feedback"
 		     *ngIf="password.errors && (password.dirty || password.touched)">
-			<p *ngIf="password.errors.required"class="text-danger">Password is required</p>
-			<p *ngIf="password.errors.minlength" class="text-danger">Password must be at least 8 characters long</p>
-            <p *ngIf="password.errors.pattern" class="text-danger">Password must contain at least the one capital letter ,a small letter or a number </p>
+			<p style="font-weight: bold;color: red; " *ngIf="password.errors.required"class="text-danger">Password is required</p>
+			<p style="font-weight: bold;color: red; " *ngIf="password.errors.minlength" class="text-danger">Password must be at least 8 characters long</p>
+            <p style="font-weight: bold;color: red; " *ngIf="password.errors.pattern" class="text-danger">Password must contain at least the one capital letter ,a small letter or a number </p>
 		                             </div>
 	                         </div>
                                 </div>
@@ -63,9 +63,9 @@
                                     <input type="password" name="stcmpassword" class="form-control" placeholder="Confirm Password *" value="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  autocomplete="off" spellcheck="false" [(ngModel)]="form.password" #password="ngModel" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" name="LGform1" class="btnContactSubmit"   value="REGISTER" />
+                                    <input type="submit" name="LGform1" class="btnContactSubmit"   value="REGISTER"  style="font-weight: bold;color: black; " />
                                     <span><b>Already have an Account?</b></span>
-                                    <a routerLink="../login-teacher" class="btnForgetPwd" id="st_login"  value="Login">Login</a> 
+                                    <a routerLink="../login-teacher" class="btnForgetPwd" id="st_login"  value="Login"  style="font-weight: bold;color: red; ">Login</a> 
                                 </div>
                             </form>
                         </div>

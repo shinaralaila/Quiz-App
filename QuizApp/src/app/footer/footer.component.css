@@ -56,7 +56,7 @@
   }
   .footer {
       background: #EDEFF1;
-      height: auto;
+      height: 80px;
         padding-bottom: 30px;  
       
 
@@ -64,7 +64,7 @@
       border-bottom: 1px solid #CCCCCC;
       border-top: 1px solid #DDDDDD;
       margin-top: 20%;
-    
+    position:absolute;
   bottom: 0;
       
   }

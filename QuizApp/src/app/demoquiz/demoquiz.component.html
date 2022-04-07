@@ -2,19 +2,19 @@
 
 <div class="container bg-light py-5" >
     <h1 class="display-5 fw-bold">Welcome To Demo Quiz</h1>
-    <p class="col-md-8 fs-5">This demo quiz will contains total 10 questions.Each question holds 10 points</p>
+    <p class="col-md-8 fs-5" style="font-weight: bold;color: black; ">This demo quiz will contains total 10 questions.Each question holds 10 points</p>
     <h4>Rules:</h4>
-    <ol>
+    <ol  style="font-weight: bold;color: black; ">
         <li>Correct questions gives you 10 points.</li>
         <li>Incorrect questions gives you -10 points.</li>
         <li>You will have 60 sec to answer each question.</li>
         <li>Refreshing the page will reset the Quiz.</li>
     </ol>
-    <h1 style="font-family: cursive;text-align:center;">ALL THE BEST</h1>
+    <h1 style="font-family: cursive;text-align:center; font-weight: bold;color: black;">ALL THE BEST</h1>
 <div class="name col-md-5 my-4">
-    <label for="">Enter Your Name:</label>
+    <label  style="font-weight: bold;color: black; " for="">Enter Your Name:</label>
     <input #name type="text" class="form-control" id="name">
 </div>
-<button class="btn btn-primary btn-success" style="margin-left: 15px;"routerLink="/demoquestions" (click)="startQuiz()">Start the Demo Quiz!!</button>
+<button class="btn btn-primary btn-danger" style="margin-left: 15px;"routerLink="/demoquestions" (click)="startQuiz()">Start the Demo Quiz!!</button>
 
 </div>

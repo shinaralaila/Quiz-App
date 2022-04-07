@@ -84,6 +84,7 @@ app.get('/homequiz', verifyToken, (req, res) => {
     })
 })
 
+
 app.delete('/removequiz/:id', verifyToken, (req, res) => {
   id = req.params.id;
   quizdata.findByIdAndDelete({ "_id": id })
@@ -96,13 +97,21 @@ app.delete('/removequiz/:id', verifyToken, (req, res) => {
 app.get('/question/:quizid', verifyToken, (req, res) => {
   // console.log("req"); console.log(req);
   quizid = req.params.quizid;
-  console.log("this.quizid"); console.log(quizid);
-  console.log("Questiondata"); console.log(Questiondata);
+  // console.log("this.quizid"); console.log(quizid);
+  // console.log("Questiondata"); console.log(Questiondata);
   Questiondata.find({ "quizid": quizid })
     .then(function (question) {
       res.send(question);
     });
 })
+
+
+app.get('/questions', verifyToken, (req, res) => {
+  Questiondata.find()
+    .then(function (question) {
+      res.send(question);
+    });
+});
 
 app.delete('/remove/:id', verifyToken, (req, res) => {
   id = req.params.id;
@@ -196,7 +205,7 @@ app.post('/login', (req, res) => {
           }
         }).catch(err => {
           console.log("Something wrong -" + err);
-          res.json({ msg: 'Somthing wrong - ' + err })
+          res.json({ msg: 'Something wrong - ' + err })
         })
       }
     }
@@ -216,9 +225,9 @@ app.get('/seeteacher', (req, res) => {
 })
 
 app.post('/userscore', verifyToken, (req, res) => {
-  console.log("Save Score: req.body"); console.log(req.body);
+  // console.log("Save Score: req.body"); console.log(req.body);
   var timestamp = new Date();
-   
+
   var userscore = {
     quizid: req.body.userscore.quizid,
     email: req.email,
@@ -226,16 +235,35 @@ app.post('/userscore', verifyToken, (req, res) => {
     datestamp: timestamp
 
   }
-  console.log("userscore:");console.log(userscore);
+  // console.log("userscore:");console.log(userscore);
 
   var userscore = new userscoredata(userscore);
-  console.log("userscore:"); console.log(userscore);
+  // console.log("userscore:"); console.log(userscore);
   userscore.save();
 })
 
-app.put('/update/', (req, res) => {
-  console.log(req.body)
-  id = req.body._id,
+app.get('/getqn/:id', (req, res) => {
+  const id = req.params.id;
+
+  var question = {
+    quizid: '',
+    question: '',
+    option1: '',
+    option2: '',
+    option3: '',
+    option4: '',
+    answer: ''
+  }
+  Questiondata.findOne({ "_id": id })
+    .then((question) => {
+      res.send(question);
+    });
+  console.log(question);
+})
+
+app.put('/editqn', verifyToken, (req, res) => {
+  console.log("Edit ReqBody:"); console.log(req.body)
+    id = req.body._id,
     quizid = req.body.quizid,
     question = req.body.question,
     option1 = req.body.option1,
@@ -244,7 +272,10 @@ app.put('/update/', (req, res) => {
     option4 = req.body.option4,
     answer = req.body.answer,
 
-    Questiondata.findByIdAndUpdate({ "_id": id },
+    Questiondata.findByIdAndUpdate(
+      {
+        "_id": id
+      },
       {
         $set: {
           "quizid": quizid,
@@ -253,7 +284,7 @@ app.put('/update/', (req, res) => {
           "option2": option2,
           "option3": option3,
           "option4": option4,
-          "answer":answer
+          "answer": answer
         }
       })
       .then(function () {
@@ -261,7 +292,13 @@ app.put('/update/', (req, res) => {
       })
 })
 
-
+app.get('/result', verifyToken, (req, res) => {
+  userscoredata.find()
+    .then(function (userscore) {
+      res.send(userscore);
+      // console.log(userscore)
+    })
+})
 
 app.listen(3000, () => {
   console.log("port 3000")

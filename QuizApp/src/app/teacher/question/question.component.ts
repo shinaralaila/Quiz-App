@@ -27,18 +27,22 @@ export class QuestionComponent implements OnInit {
     this.quizid = this.questionservice.getQuizId();
     // console.log(this.del);
 
-    console.log("QuizId in QuestionComp"); console.log(this.quizid);
+    // console.log("QuizId in QuestionComp"); console.log(this.quizid);
     this.questionservice.getQuestion(this.quizid).subscribe((data: any) => {
       this.question = JSON.parse(JSON.stringify(data))
 
     })
   }
-  edit(question: any) {
-    localStorage.setItem("editquestionId",this.question)
-    console.log(localStorage.getItem("editquestionId"))
-    this.questionservice.edit(this.question);
 
-    this.router.navigate(['edit']);
+  getqn(question: any) {
+    localStorage.removeItem("editQuestionId");
+    localStorage.setItem("editQuestionId", question._id);
+    var questionId = localStorage.getItem("editQuestionId");
+    // console.log("EditInit:QnId"); console.log(questionId);
+    this.questionservice.getqn(questionId).subscribe((data) => {
+      this.question = JSON.parse(JSON.stringify(data));
+      this.router.navigate(['editqn'])
+    });
   }
 
   delete(question: any) {

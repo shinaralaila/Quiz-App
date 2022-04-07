@@ -4,6 +4,7 @@
    
 }
 .mb.btn{
+    
     border-radius: 0;
     box-shadow: 0.5px 1px 2px rgb(178, 175, 175);
 }
@@ -12,6 +13,8 @@
     box-shadow: 2px 2px 5px rgb(190, 181, 181);
 }
 .mb.card{
+    height: 100px;
+    width: 300%;
     margin-top: 20%;
     border-radius: 0px / 0px;
     /* overflow: hidden; */

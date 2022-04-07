@@ -64,9 +64,10 @@ export class QuizComponent implements OnInit {
     
           )
       }
+      
       edit(q)
       {  this.questionservice.setQuizId(q._id);  
-        this.questionservice.edit(this.question);   
+        this.questionservice.getqn(this.question);   
       console.log('edit')
         this.router.navigate(['question']);
       }
